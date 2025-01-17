@@ -19,11 +19,18 @@
           </div>
           <div class="product-info">
             <h1>{{ product }}</h1>
-            <!-- v-if -> adds/removes element in/from DOM, v-show -> switches `display: none` style -->
-            <p v-if="inventory > 10">In stock</p>
-            <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out</p>
-            <p v-else>Out of stock</p>
-            <p v-show="onSale">On Sale</p>
+            <p v-if="inStock">In Stock</p>
+            <p v-else>Out of Stock</p>
+            <ul>
+              <!-- v-for loops through array of elements, key binding is for vue to follow items -->
+              <li v-for="detail in details">{{ detail }}</li>
+            </ul>
+            <h2>Variants</h2>
+            <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
+            <h2>Sizes</h2>
+            <ul>
+              <li v-for="size in sizes">{{size}}</li>
+            </ul>
           </div>
         </div>
       </div>
