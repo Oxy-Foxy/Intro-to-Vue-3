@@ -19,7 +19,11 @@
           </div>
           <div class="product-info">
             <h1>{{ product }}</h1>
-            <a :href="url">Link</a>
+            <!-- v-if -> adds/removes element in/from DOM, v-show -> switches `display: none` style -->
+            <p v-if="inventory > 10">In stock</p>
+            <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out</p>
+            <p v-else>Out of stock</p>
+            <p v-show="onSale">On Sale</p>
           </div>
         </div>
       </div>
