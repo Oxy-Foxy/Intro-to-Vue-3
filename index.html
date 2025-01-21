@@ -11,26 +11,24 @@
   <body>
     <div id="app">
       <div class="nav-bar"></div>
+
+      <div class="cart">Cart({{ cart }})</div>
       
       <div class="product-display">
         <div class="product-container">
           <div class="product-image">
-            <img :src="image" alt="">
+            <img v-bind:src="image">
           </div>
           <div class="product-info">
             <h1>{{ product }}</h1>
             <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
             <ul>
-              <!-- v-for loops through array of elements, key binding is for vue to follow items -->
               <li v-for="detail in details">{{ detail }}</li>
             </ul>
-            <h2>Variants</h2>
-            <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
-            <h2>Sizes</h2>
-            <ul>
-              <li v-for="size in sizes">{{size}}</li>
-            </ul>
+            <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}</div>
+            <button class="button" @click="addToCart">Add to Cart</button>
+            <button class="button" @click="removeFromCart">Remove from Cart</button>
           </div>
         </div>
       </div>
